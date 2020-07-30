@@ -1,0 +1,92 @@
+import 'package:flutter/material.dart';
+import 'package:mortalityday/global/sizes.dart';
+
+import 'content/i18n.dart';
+import 'domain/model/quote.dart';
+import 'domain/repository.dart';
+import 'global/colors.dart' as MyColors;
+import 'global/framework.dart';
+import 'global/resources.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      localizationsDelegates: localizationsDelegates,
+      supportedLocales: supportedLocales,
+      theme: ThemeData(
+        primarySwatch: MyColors.primary,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: QuotePage(),
+    );
+  }
+}
+
+class QuotePage extends StatefulWidget {
+  QuotePage({Key key}) : super(key: key);
+
+  @override
+  QuotePageState createState() => QuotePageState();
+}
+
+class QuotePageState extends State<QuotePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: createAppBar(),
+      body: createBody(),
+      floatingActionButton: createFloatingActionButton(),
+    );
+  }
+
+  AppBar createAppBar() {
+    return AppBar(
+      title: Text(I18n.of(context).title),
+    );
+  }
+
+  Widget createBody() {
+    return FutureBuilder<Quote>(
+        future: Repository().getRandomQuote(context),
+        builder: (BuildContext context, AsyncSnapshot<Quote> snapshot) {
+          if (snapshot.hasData && snapshot.data != null) {
+            return createBodyLoaded(snapshot.data);
+          } else {
+            return createBodyWaiting();
+          }
+        });
+  }
+
+  Widget createBodyWaiting() {
+    return Center(child: CircularProgressIndicator());
+  }
+
+  Widget createBodyLoaded(Quote quote) {
+    return Center(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: space2),
+              child: Text(quote.text, style: textStyleXXXLarge)
+          ),
+          SizedBox(height: 10),
+          Text(quote.author, style: textStyleXLarge)
+        ])
+    );
+  }
+
+  FloatingActionButton createFloatingActionButton() {
+    return FloatingActionButton(
+      onPressed: null,
+      tooltip: (isIOS ? I18n.of(context).send : I18n.of(context).share),
+      child: Icon(iconShare),
+    );
+  }
+}
