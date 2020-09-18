@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mortalityday/global/sizes.dart';
+import 'package:shake/shake.dart';
 
 import 'content/i18n.dart';
 import 'domain/model/quote.dart';
@@ -7,6 +9,7 @@ import 'domain/repository.dart';
 import 'global/colors.dart' as MyColors;
 import 'global/framework.dart';
 import 'global/resources.dart';
+import 'utils/external.dart';
 
 void main() {
   runApp(MyApp());
@@ -35,13 +38,29 @@ class QuotePage extends StatefulWidget {
 }
 
 class QuotePageState extends State<QuotePage> {
+  ShakeDetector detector;
+
   @override
   Widget build(BuildContext context) {
+    detector = ShakeDetector.autoStart(
+        onPhoneShake: () {
+          reload();
+        }
+    );
+
     return Scaffold(
       appBar: createAppBar(),
       body: createBody(),
       floatingActionButton: createFloatingActionButton(),
     );
+  }
+
+  @override
+  dispose() {
+    if (detector != null) {
+      detector.stopListening();
+    }
+    super.dispose();
   }
 
   AppBar createAppBar() {
@@ -76,17 +95,23 @@ class QuotePageState extends State<QuotePage> {
             padding: EdgeInsets.symmetric(horizontal: space2),
               child: Text(quote.text, style: textStyleXXXLarge)
           ),
-          SizedBox(height: 10),
+          SizedBox(height: space1),
           Text(quote.author, style: textStyleXLarge)
         ])
     );
   }
 
-  FloatingActionButton createFloatingActionButton() {
+  FloatingActionButton createFloatingActionButton(Quote quote) {
     return FloatingActionButton(
-      onPressed: null,
+      onPressed: External.shareText(text),
       tooltip: (isIOS ? I18n.of(context).send : I18n.of(context).share),
       child: Icon(iconShare),
+    );
+  }
+
+  void reload() {
+    Fluttertoast.showToast(
+        msg: "Reload"
     );
   }
 }

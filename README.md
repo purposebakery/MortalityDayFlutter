@@ -14,6 +14,10 @@ still has dynamic as for Any / Object
 - (mobile) client optimized
 - use underscore to make (library) private, no other visibility
 
+### DI
+- Found one third party lib (last commit 15 months ago)
+- Better luck next time
+
 ### UI
 - No xml, all in code!
 - Somewhat specialized for material design
@@ -22,11 +26,23 @@ still has dynamic as for Any / Object
 
 ### Network
 - Easy http client
-- Dart has no reflection so no automatic deserializing
+- Dart has no reflection so no gson like stuff - rely on code generation via annoation processors
+
+### Firebase
+TODO?
+
+### Push notifications
+TODO?
 
 ### Storage
+- Sqlite but no fancy help as with greendao or room
+- Key Value storage
+- File storage
+- Realm DB support in dev by third party
 
 ### Native widgets
+Widget: TODO
+System access: TODO
 
 ### i18n
 - No automatic resource management as in Android world
@@ -42,6 +58,9 @@ still has dynamic as for Any / Object
 - Unit tests support mockito inspired lib for mocking, stubbing
 - UI Tests support with flutter driver (Espresso (Android) or Earl Gray (iOS)) // not tested
 
+Flutter Web
+- TODO
+
 ## CI / CD
 - works via fastlane
 
@@ -51,7 +70,6 @@ still has dynamic as for Any / Object
 
 ## Takeaway
 - Use for own small or medium sized apps
-- Super fancy animations / design possible but requires (like all fields probably) a little more practice.
-- Very easy of you don't want to think about design too much since it comes with a lot of in-house material design / cupertino set up.
+- Super fancy animations / design possible but requires (like all fields probably) a little more practice
+- Very easy if you don't want to think about design too much since it comes with a lot of in-house material design / cupertino set up.
 - Flutter Web not evaluated
-- Nice in-house support for parallel iOS and Android development
