@@ -14,35 +14,38 @@ still has dynamic as for Any / Object
 - (mobile) client optimized
 - use underscore to make (library) private, no other visibility
 
+### UI
+- No xml, all in code! Find a good arch pattern!
+- Somewhat specialized for material design (made very easy)
+- concept of styling similar to android
+- Dark mode support baked into material design components
+
 ### DI
 - Found one third party lib (last commit 15 months ago)
-- Better luck next time
-
-### UI
-- No xml, all in code!
-- Somewhat specialized for material design
-- concept of styling / themeing similar
-- Dark mode support
+- So not really - Better luck next time
 
 ### Network
-- Easy http client
+- Easy http client but nothing as fancy as retrofit
 - Dart has no reflection so no gson like stuff - rely on code generation via annoation processors
 
 ### Firebase
-TODO?
+- needs to be setup natively first (painful)
+- then on flutter / dart side (super easy)
+- support for firestore, crashlytics, analytics, auth, cloud functions, remote config, ml
 
 ### Push notifications
-TODO?
+TODO probably a pain because it always is...
 
 ### Storage
-- Sqlite but no fancy help as with greendao or room
+- Sqlite support but no fancy help as with room or greendao
 - Key Value storage
 - File storage
 - Realm DB support in dev by third party
 
-### Native widgets
-Widget: TODO
-System access: TODO
+### Native widgets // not tested
+- Widget: TODO
+- System access: TODO
+- (apparently relatively straight forward)
 
 ### i18n
 - No automatic resource management as in Android world
@@ -58,18 +61,18 @@ System access: TODO
 - Unit tests support mockito inspired lib for mocking, stubbing
 - UI Tests support with flutter driver (Espresso (Android) or Earl Gray (iOS)) // not tested
 
-Flutter Web
-- TODO
+## Flutter Web // not tested
 
 ## CI / CD
-- works via fastlane
+- since using flutter as sdk for build relatively straight forward (for jenkins)
+- Github Actions / docker images available for flutter and they work!
 
 ## Noteworthy
-- Possible to add to existing Android or iOS app
-- Runtime permissions?
+- Possible to add flutter to existing Android or iOS app (flutter in native / native in flutter)
 
 ## Takeaway
-- Use for own small or medium sized apps
-- Super fancy animations / design possible but requires (like all fields probably) a little more practice
+- Use for small or medium sized apps
+- Use for short time to market (super fast dev)
+- Custom animations / design possible but requires (like all fields probably) a little more practice
 - Very easy if you don't want to think about design too much since it comes with a lot of in-house material design / cupertino set up.
-- Flutter Web not evaluated
+- Flutter web not evaluated (but not treated as first class citizen by the community)

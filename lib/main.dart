@@ -101,9 +101,9 @@ class QuotePageState extends State<QuotePage> {
     );
   }
 
-  FloatingActionButton createFloatingActionButton(Quote quote) {
+  FloatingActionButton createFloatingActionButton() {
     return FloatingActionButton(
-      onPressed: External.shareText(text),
+      onPressed: (){External.shareText("");},
       tooltip: (isIOS ? I18n.of(context).send : I18n.of(context).share),
       child: Icon(iconShare),
     );
